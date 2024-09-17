@@ -1,12 +1,24 @@
 package com.security.pet.User.model;
 
-import lombok.Builder;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
+@ToString
+@EqualsAndHashCode
+@Table(name = "events", schema = "public",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "id")
+        })
 public class User {
-    private final int id;
-    private final String name;
-    private final String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String name;
+    private String password;
 }
